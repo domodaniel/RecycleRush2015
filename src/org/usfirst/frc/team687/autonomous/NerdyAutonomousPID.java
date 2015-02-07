@@ -46,7 +46,16 @@ public class NerdyAutonomousPID {
 	}
 	
 	public static void preformDistanceTo()	{
+		if(!ini)	{
+			init();
+		}
 		
+		error = distance - desired;
+		double p = kP * error;
+		integrator.setError(error);
+		integrator.perform();
+		double i = integrator.getI();
+		pid = (p+i);
 	}
 	
 	public static double getPID()	{
