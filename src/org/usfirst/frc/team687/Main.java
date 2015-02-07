@@ -1,10 +1,7 @@
 
-package org.usfirst.frc.team687.robot;
+package org.usfirst.frc.team687;
 
 import org.usfirst.frc.team687.drive.NerdyDrive;
-
-import com.kauailabs.nav6.frc.IMUAdvanced;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
@@ -22,10 +19,12 @@ public class Main extends IterativeRobot {
      * used for any initialization code.
      */
 	Joystick leftJoy, rightJoy;
+	NerdyArticJoystick articJoy;
 	
     public void robotInit() {
     	leftJoy = new Joystick(0);
     	rightJoy = new Joystick(1);
+    	articJoy = new NerdyArticJoystick(2);
     	NerdyBot.init();
     	boolean is_calibrating = NerdyBot.imu.isCalibrating();
         while(is_calibrating)   {
@@ -56,6 +55,9 @@ public class Main extends IterativeRobot {
         
         NerdyBot.drive(NerdyDrive.getDrive());
         //End Drive Section
+        
+        //Start Artic Section
+        
     }
     
     /**

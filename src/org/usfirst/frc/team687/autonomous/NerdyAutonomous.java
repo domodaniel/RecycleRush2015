@@ -8,7 +8,7 @@ public class NerdyAutonomous {
 	private static boolean init = false;
 	
 	private static double ftLeft = 0, ftRight = 0, bkLeft = 0, bkRight = 0;
-	private static double degrees, distance;
+	private static double degrees = 0, xpos = 0, ypos = 0;
 	
 	/**
 	 * @param modeNumber Finish This Comment Later
@@ -38,10 +38,6 @@ public class NerdyAutonomous {
 	
 	public static void setDegrees(double degree)	{
 		degrees = degree;
-	}
-	
-	public static void setDistance(double d)	{
-		distance = d;
 	}
 	
 	public static double[] getDrives()	{

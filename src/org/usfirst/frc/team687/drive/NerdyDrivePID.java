@@ -12,7 +12,6 @@ public class NerdyDrivePID {
     private static double kP = 0.00444444;
     private static double heading = 0;
     private static double error = 0;
-    private static double lastError;
     private static double tolerance = 2;
     private static boolean init = false;
     
@@ -44,7 +43,6 @@ public class NerdyDrivePID {
     	    integrator = new NerdyIntegrator(0.0000444444);
     	    init = true;
     	}
-        lastError = error;
         error = shortestRotation(desired);
         double p = error * kP;
         integrator.setError(error);
