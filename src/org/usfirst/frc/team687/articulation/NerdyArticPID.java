@@ -5,10 +5,11 @@ import org.usfirst.frc.team687.util.NerdyIntegrator;
 public class NerdyArticPID {
 	private static NerdyIntegrator integrator;
 	private static boolean ini = false;
-	private final static double kP = 0.1, kI = 0.01;
+	private final static double kP = 0.1, kI = 0.01, kD = 0;
 	private final static double inches = 5;
 	private static double height = 0;
 	private static double power = 0;
+	private static double error = 0, prevError = 0;;
 	
 	public static void init()	{
 		integrator = new NerdyIntegrator(kI);
@@ -24,12 +25,14 @@ public class NerdyArticPID {
 			init();
 		}
 		double desired = level * inches;
-		double error = desired-height;
+		prevError = error;
+		error = desired-height;
 		double p = kP * error;
 		integrator.setError(error);
 		integrator.perform();
 		double i = integrator.getI();
-		power = (p+i);
+		double d = kD * (error - prevError);
+		power = (p+i+d);
 	}
 	
 	public static double getPower()	{
