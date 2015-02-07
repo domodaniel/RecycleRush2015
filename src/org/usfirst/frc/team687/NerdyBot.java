@@ -1,6 +1,7 @@
 package org.usfirst.frc.team687;
 
 import org.usfirst.frc.team687.articulation.NerdyArtic;
+import org.usfirst.frc.team687.articulation.NerdyHallSensor;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
@@ -13,6 +14,7 @@ public class NerdyBot {
 	private static TalonSRX ftLeft, ftRight, bkLeft, bkRight;
 	//articulation
 	private static TalonSRX articulation;
+	public static NerdyHallSensor hallSensors;
 	
 	public static void init()	{
 		imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP));
@@ -21,6 +23,10 @@ public class NerdyBot {
     	ftRight = new TalonSRX(3);
     	bkLeft = new TalonSRX(4);
     	bkRight = new TalonSRX(5);
+    	//articulation
+    	articulation = new TalonSRX(6);
+    	int[] i = {0,1,2,3,4};
+    	hallSensors = new NerdyHallSensor(i);
 	}
 	
 	
@@ -47,5 +53,8 @@ public class NerdyBot {
 		articulation.set(NerdyArtic.getPower());
 	}
 	
-	
+	//general maintenance
+	public static void update()	{
+		NerdyArtic.setHallSensors(hallSensors.outputs());
+	}
 }

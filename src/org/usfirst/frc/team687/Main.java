@@ -26,6 +26,7 @@ public class Main extends IterativeRobot {
     	rightJoy = new Joystick(1);
     	articJoy = new NerdyArticJoystick(2);
     	NerdyBot.init();
+    	//calibration
     	boolean is_calibrating = NerdyBot.imu.isCalibrating();
         while(is_calibrating)   {
             Timer.delay(0.3);
@@ -44,6 +45,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	NerdyBot.update();
     	//Start Drive Section
     	NerdyDrive.setHeader(NerdyBot.imu.getYaw());
         boolean beta = rightJoy.getRawButton(4);
