@@ -4,7 +4,7 @@ public class NerdyArtic {
 	private static double power;
 	private static double height;
 	private static int level;
-	private static boolean[] hullSensor;
+	private static boolean[] hallSensor;
 	
 	public static void setHeight(double h)	{
 		height = h;
@@ -24,12 +24,12 @@ public class NerdyArtic {
 		return level;
 	}
 	
-	public static void setHullSensors(boolean[] input)	{
-		hullSensor = input;
+	public static void setHallSensors(boolean[] input)	{
+		hallSensor = input;
 	}
 	
 	public static double getPower()	{
-		if(!hullSensor[level])	{
+		if(!hallSensor[level])	{
 			return power;
 		}	else	{
 			return 0;
