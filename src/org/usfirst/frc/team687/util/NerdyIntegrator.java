@@ -19,6 +19,10 @@ public class NerdyIntegrator {
 		integration += ((error + lastError)/2)*.02;
 	}
 	
+	public void reset()	{
+		integration = 0;
+	}
+	
 	public double getI()	{
 		return kI*integration;
 	}

@@ -28,6 +28,10 @@ public class NerdyAutonomousPID {
 		desired = d;
 	}
 	
+	public static void resetIntegration()	{
+		integrator.reset();
+	}
+	
 	public static void preformDistanceFrom()	{
 		if(!ini)	{
 			init();
@@ -39,6 +43,10 @@ public class NerdyAutonomousPID {
 		integrator.perform();
 		double i = integrator.getI();
 		pid = (p+i);
+	}
+	
+	public static void preformDistanceTo()	{
+		
 	}
 	
 	public static double getPID()	{
