@@ -1,14 +1,24 @@
 package org.usfirst.frc.team687.autonomous;
+import java.io.IOException;
+
 import org.usfirst.frc.team687.util.USB_FileReader;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class NerdyAutonomous {
-	USB_FileReader fr;
-	private static int mode = 1;
+	private static USB_FileReader fr;
+	private static int mode = 0;
 	private static String fileName;
-	private static boolean init = false;
+	private static boolean ini = false;
+	
+	private static double[][] file;
 	
 	private static double ftLeft = 0, ftRight = 0, bkLeft = 0, bkRight = 0;
 	private static double degrees = 0, xpos = 0, ypos = 0;
+	
+	private static double[] action;
+	private static boolean running = false;
+	
 	
 	/**
 	 * @param modeNumber Finish This Comment Later
@@ -17,21 +27,38 @@ public class NerdyAutonomous {
 		mode = modeNumber;
 	}
 	
-	private static void file()	{
-		switch(mode)	{
+	public static void init()	{
+		String dev = "/sdb1";
+		if(!ini)	{
+			USB_FileReader.setDefaultDir("/media");
+			USB_FileReader.setDefaultMediaDevice(dev);
+			USB_FileReader.setDefaultDelimiter("\t");
+			fileName = "Autonomous" + mode + ".csv";
 			
-			
-			default:
-				fileName = "none.csv";
-				break;
+			try {
+				fr = new USB_FileReader(fileName);
+				ini = true;
+				String[][] input = fr.read();
+				for(int i = 0; i < input.length; i++)	{
+					for(int j = 0; j < input[0].length; j++)	{
+						file[i][j] = Double.parseDouble(input[i][j]);
+					}
+				}
+				SmartDashboard.putString("Autonomous File Error: ", "No error");
+			} catch (IOException e) {
+				if(dev.equals("/sdb1"))	{
+					dev = "/sda1";
+				}	else if(dev.equals("/sda1"))	{
+					dev = "/sdb1";
+				}
+				SmartDashboard.putString("Autonomous File Error: ", e.toString());
+			}
 		}
-		
-		init = true;
 	}
 	
 	public static void run()	{
-		if(!init)	{
-			file();
+		if(!ini)	{
+			init();
 		}
 		
 	}
