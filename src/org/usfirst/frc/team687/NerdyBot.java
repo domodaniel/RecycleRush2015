@@ -49,8 +49,10 @@ public class NerdyBot {
 	
 	//articulation
 	public static void setArtic(int level)	{
-		NerdyArtic.set(level);
-		articulation.set(NerdyArtic.getPower());
+		if(level != NerdyArtic.getLevel())	{
+			NerdyArtic.set(level);
+			articulation.set(NerdyArtic.getPower());
+		}
 	}
 	
 	//general maintenance

@@ -3,6 +3,8 @@ package org.usfirst.frc.team687.articulation;
 public class NerdyArtic {
 	private static double power;
 	private static double height;
+	private final static double inches = 5;
+	private static int desiredLevel;
 	private static int level;
 	private static boolean[] hallSensor;
 	
@@ -15,13 +17,18 @@ public class NerdyArtic {
 		return height;
 	}
 	
-	public static void set(int l)	{
-		NerdyArticPID.pid(l);
-		level = l;
+	public static double getLevel()	{
+		double i = height/inches;
+		return (int) (i - (i%1));
 	}
 	
-	public static int getLevel()	{
-		return level;
+	public static void set(int l)	{
+		NerdyArticPID.pid(l);
+		desiredLevel = l;
+	}
+	
+	public static int getDesiredLevel()	{
+		return desiredLevel;
 	}
 	
 	public static void setHallSensors(boolean[] input)	{
@@ -29,7 +36,7 @@ public class NerdyArtic {
 	}
 	
 	public static double getPower()	{
-		if(!hallSensor[level])	{
+		if(!hallSensor[desiredLevel])	{
 			return power;
 		}	else	{
 			return 0;

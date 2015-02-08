@@ -65,7 +65,7 @@ public class Main extends IterativeRobot {
         //End Drive Section
         
         //Start Artic Section
-        
+        NerdyBot.setArtic(articJoy.getLevel());
     }
     
     /**
