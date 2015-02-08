@@ -26,7 +26,7 @@ public class NerdyAutonomous {
 	public static void setMode(int modeNumber)	{
 		mode = modeNumber;
 	}
-	
+	//put in disabled
 	public static void init()	{
 		String dev = "/sdb1";
 		if(!ini)	{
@@ -55,7 +55,7 @@ public class NerdyAutonomous {
 			}
 		}
 	}
-	
+	//use with a thread
 	public static void run()	{
 		if(!ini)	{
 			init();
