@@ -21,17 +21,23 @@ public class Main extends IterativeRobot {
 	Joystick leftJoy, rightJoy;
 	NerdyArticJoystick articJoy;
 	
+	//imu calibration
+	boolean calibrated = false;
+	
+	public void disabledPeriodic()	{
+		boolean is_calibrating = NerdyBot.imu.isCalibrating();
+        if ( !calibrated && !is_calibrating ) {
+            Timer.delay( 0.3 );
+            NerdyBot.imu.zeroYaw();
+            calibrated = true;
+        }
+	}
+	
     public void robotInit() {
     	leftJoy = new Joystick(0);
     	rightJoy = new Joystick(1);
     	articJoy = new NerdyArticJoystick(2);
     	NerdyBot.init();
-    	//calibration
-    	boolean is_calibrating = NerdyBot.imu.isCalibrating();
-        while(is_calibrating)   {
-            Timer.delay(0.3);
-            NerdyBot.imu.zeroYaw();
-        }
     }
 
     /**
