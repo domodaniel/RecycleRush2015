@@ -19,7 +19,8 @@ public class NerdyArtic {
 	
 	public static double getLevel()	{
 		double i = height/inches;
-		return (int) (i - (i%1));
+		level = (int) (i = (i%1));
+		return level;
 	}
 	
 	public static void set(int l)	{

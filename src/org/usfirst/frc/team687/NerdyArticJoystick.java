@@ -1,7 +1,5 @@
 package org.usfirst.frc.team687;
 
-import org.usfirst.frc.team687.articulation.NerdyArtic;
-
 import edu.wpi.first.wpilibj.Joystick;
 
 public class NerdyArticJoystick extends Joystick {
