@@ -58,9 +58,9 @@ public class Main extends IterativeRobot {
     	NerdyDrive.setHeader(NerdyBot.imu.getYaw());
         boolean beta = rightJoy.getRawButton(4);
         if(beta)	{
-        	NerdyDrive.driveBeta(leftJoy.getX(), leftJoy.getY(), rightJoy.getX(), rightJoy.getY());
+        	NerdyDrive.driveBeta(leftJoy.getX(), -leftJoy.getY(), rightJoy.getX(), -rightJoy.getY());
         }	else	{
-        	NerdyDrive.driveAlpha(leftJoy.getX(), leftJoy.getY(), rightJoy.getX());
+        	NerdyDrive.driveAlpha(leftJoy.getX(), -leftJoy.getY(), rightJoy.getX());
         }
         
         NerdyBot.drive(NerdyDrive.getDrive());
