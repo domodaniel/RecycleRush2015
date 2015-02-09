@@ -2,6 +2,7 @@ package org.usfirst.frc.team687;
 
 import org.usfirst.frc.team687.articulation.NerdyArtic;
 import org.usfirst.frc.team687.articulation.NerdyHallSensor;
+import org.usfirst.frc.team687.autonomous.NerdyUltrasonic;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
@@ -15,6 +16,7 @@ public class NerdyBot {
 	//articulation
 	private static TalonSRX articulation;
 	public static NerdyHallSensor hallSensors;
+	public static NerdyUltrasonic ping;
 	
 	public static void init()	{
 		imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP));
@@ -27,6 +29,7 @@ public class NerdyBot {
     	articulation = new TalonSRX(6);
     	int[] i = {0,1,2,3,4};
     	hallSensors = new NerdyHallSensor(i);
+    	ping = new NerdyUltrasonic(0,1);
 	}
 	
 	

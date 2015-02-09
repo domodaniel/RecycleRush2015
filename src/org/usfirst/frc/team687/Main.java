@@ -1,7 +1,9 @@
 
 package org.usfirst.frc.team687;
 
+import org.usfirst.frc.team687.autonomous.NerdyAutonomous;
 import org.usfirst.frc.team687.drive.NerdyDrive;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
@@ -44,7 +46,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	
+    	NerdyAutonomous.setPing(NerdyBot.ping.get());
     }
 
     /**

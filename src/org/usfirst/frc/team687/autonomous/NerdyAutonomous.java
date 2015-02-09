@@ -19,6 +19,8 @@ public class NerdyAutonomous {
 	private static double[] action;
 	private static boolean running = false;
 	
+	private static double ping = 0;
+	
 	
 	/**
 	 * @param modeNumber Finish This Comment Later
@@ -61,6 +63,10 @@ public class NerdyAutonomous {
 			init();
 		}
 		
+	}
+	
+	public static void setPing(double p)	{
+		ping = p;
 	}
 	
 	public static void setDegrees(double degree)	{
