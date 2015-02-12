@@ -3,7 +3,7 @@ package org.usfirst.frc.team687.articulation;
 public class NerdyArtic {
 	private static double power;
 	private static double height;
-	private final static double inches = 5;
+	private final static double inches = 12.5;
 	private static int desiredLevel;
 	private static int level;
 	private static boolean[] hallSensor;
