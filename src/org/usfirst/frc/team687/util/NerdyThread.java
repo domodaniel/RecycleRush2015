@@ -1,6 +1,9 @@
 package org.usfirst.frc.team687.util;
 
+import org.usfirst.frc.team687.articulation.NerdyArtic;
 import org.usfirst.frc.team687.autonomous.NerdyAutonomous;
+
+import edu.wpi.first.wpilibj.RobotState;
 
 public class NerdyThread extends Thread {
 	private Thread t;
@@ -17,6 +20,14 @@ public class NerdyThread extends Thread {
 		
 		case 0:
 			NerdyAutonomous.run();
+			break;
+			
+		case 1:
+			while(RobotState.isEnabled())	{
+				NerdyArtic.run();
+			}
+			while(!RobotState.isEnabled())	{}
+			this.run();
 			break;
 		}
 	}

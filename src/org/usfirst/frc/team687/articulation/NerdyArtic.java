@@ -19,7 +19,7 @@ public class NerdyArtic {
 	
 	public static double getLevel()	{
 		double i = height/inches;
-		level = (int) (i = (i%1));
+		level = (int) Math.floor(i);
 		return level;
 	}
 	
@@ -34,6 +34,11 @@ public class NerdyArtic {
 	
 	public static void setHallSensors(boolean[] input)	{
 		hallSensor = input;
+	}
+	
+	public static void run()	{
+		NerdyArticPID.pid(desiredLevel);
+		power = NerdyArticPID.getPower();
 	}
 	
 	public static double getPower()	{
