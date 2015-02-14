@@ -38,4 +38,8 @@ public class NerdyThread extends Thread {
 			t.start();
 		}
 	}
+	
+	public void interrupt()	{
+		t.interrupt();
+	}
 }
