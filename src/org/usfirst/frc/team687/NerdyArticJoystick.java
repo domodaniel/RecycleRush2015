@@ -28,4 +28,11 @@ public class NerdyArticJoystick extends Joystick {
 			return lastValue;
 		}
 	}
+	
+	public double getArticOverride()	{
+		if(getRawButton(2))	{
+			return getY();
+		}
+		return 0;
+	}
 }
