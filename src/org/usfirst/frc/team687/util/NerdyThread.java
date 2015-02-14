@@ -10,6 +10,11 @@ public class NerdyThread extends Thread {
 	private String name;
 	private int mode = 0;
 	
+	/**
+	 * 
+	 * @param threadName the name of the thread
+	 * @param m 0 for autonomous, 1 for artic
+	 */
 	public NerdyThread(String threadName, int m)	{
 		name = threadName;
 		mode = m;
@@ -27,7 +32,7 @@ public class NerdyThread extends Thread {
 				NerdyArtic.run();
 			}
 			while(!RobotState.isEnabled())	{}
-			this.run();
+			run();
 			break;
 		}
 	}

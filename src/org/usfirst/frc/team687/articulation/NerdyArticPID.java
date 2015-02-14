@@ -38,4 +38,8 @@ public class NerdyArticPID {
 	public static double getPower()	{
 		return power;
 	}
+	
+	public static void resetIntegration()	{
+		integrator.reset();
+	}
 }

@@ -26,6 +26,7 @@ public class NerdyArtic {
 	public static void set(int l)	{
 		NerdyArticPID.pid(l);
 		desiredLevel = l;
+		NerdyArticPID.resetIntegration();
 	}
 	
 	public static int getDesiredLevel()	{
