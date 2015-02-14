@@ -84,6 +84,10 @@ public class NerdyDrive {
        backRt = output[3];
    }
    
+   public static double getBetaRotation(double deg)	{
+	   return NerdyDrivePID.getPID(deg*180/Math.PI);
+   }
+   
    public static double[] getDrive()   {
        double[] output = {frontLt, frontRt, backLt, backRt};
        return output;
