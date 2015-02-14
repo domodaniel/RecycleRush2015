@@ -1,6 +1,9 @@
 package org.usfirst.frc.team687.autonomous;
 import java.io.IOException;
 
+import org.usfirst.frc.team687.NerdyBot;
+import org.usfirst.frc.team687.articulation.NerdyArtic;
+import org.usfirst.frc.team687.drive.NerdyDrive;
 import org.usfirst.frc.team687.util.USB_FileReader;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -67,11 +70,37 @@ public class NerdyAutonomous {
 				go();
 			}
 			action = file[i];
+			running = true;
 		}
 	}
 	
+	public static void update()	{
+		degrees = NerdyBot.imu.getYaw();
+	}
+	
 	private static void go()	{
+		switch((int) action[5])	{
+		//pos
+		case 1:
+			break;
+		//deg
+		case 2:
+			double rotate = NerdyDrive.getBetaRotation(action[3]);
+			double[] drive = {rotate, rotate, rotate, rotate};
+			NerdyBot.drive(drive);
+			if(degrees == action[3])	{
+				running = false;
+			}
+			break;
+		//artic
+		case 3:
+			NerdyBot.setArticLevel((int) action[4]);
+			if(NerdyArtic.isDone())	{
+				running = false;
+			}
+			break;
 		
+		}
 	}
 	
 	public static void setPing(double p)	{
