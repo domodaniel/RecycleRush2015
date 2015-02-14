@@ -23,6 +23,13 @@ public class NerdyArtic {
 		return level;
 	}
 	
+	public static boolean isDone()	{
+		if(Math.abs(height - (desiredLevel * inches)) < .05)	{
+			return true;
+		}
+		return false;
+	}
+	
 	public static void set(int l)	{
 		NerdyArticPID.pid(l);
 		desiredLevel = l;
@@ -39,9 +46,13 @@ public class NerdyArtic {
 	
 	public static void run()	{
 		NerdyArticPID.pid(desiredLevel);
-		power = NerdyArticPID.getPower();
+		if(isDone())	{
+			power = 0;
+		}	else	{
+			power = NerdyArticPID.getPower();
+		}
 	}
-	
+		
 	public static double getPower()	{
 		if(!hallSensor[desiredLevel])	{
 			return power;
