@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team687;
 
 import org.usfirst.frc.team687.autonomous.NerdyAutonomous;
@@ -53,7 +52,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	NerdyBot.update();
+    	NerdyBot.run();
     	//Start Drive Section
     	NerdyDrive.setHeader(NerdyBot.imu.getYaw());
         boolean beta = rightJoy.getRawButton(4);
@@ -67,7 +66,8 @@ public class Main extends IterativeRobot {
         //End Drive Section
         
         //Start Artic Section
-        NerdyBot.setArtic(articJoy.getLevel());
+        NerdyBot.setArticLevel(articJoy.getLevel());
+        NerdyBot.setArticOverride(articJoy.getArticOverride());
     }
     
     /**
