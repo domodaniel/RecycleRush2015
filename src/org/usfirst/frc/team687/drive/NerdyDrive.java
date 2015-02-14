@@ -7,9 +7,11 @@ package org.usfirst.frc.team687.drive;
 public class NerdyDrive {
    private static double gyroAngle = 0;
    private static double frontLt = 0, frontRt = 0, backLt = 0, backRt = 0;
+   private static long time;
    
-   public static void setHeader(double h)  {
+   public static void setHeader(double h, long t)  {
        gyroAngle = h;
+       time = t;
    }
    
    public static void driveAlpha(double leftX, double leftY, double rightX)    {
@@ -69,7 +71,7 @@ public class NerdyDrive {
        double maxJoy[] = normalize(unscaledJoy, true);
        double scalar = threshhold((sqr(leftY) + sqr(leftX)) / (sqr(maxJoy[0]) + sqr(maxJoy[1])));
        double heading = (gyroAngle+360)%360;
-       NerdyDrivePID.setHeading(heading);
+       NerdyDrivePID.setHeading(heading, time);
        double rotate = NerdyDrivePID.getPID(desiredRotateAngle*180/Math.PI);
        double ftLeft = (forward + strafe)*scalar + rotate;
        double ftRight = (-forward + strafe)*scalar + rotate;

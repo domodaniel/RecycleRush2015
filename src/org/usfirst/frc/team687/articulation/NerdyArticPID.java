@@ -9,7 +9,8 @@ public class NerdyArticPID {
 	private final static double inches = 5;
 	private static double height = 0;
 	private static double power = 0;
-	private static double error = 0, prevError = 0;;
+	private static double error = 0, prevError = 0;
+	private static long time = 0;
 	
 	public static void init()	{
 		integrator = new NerdyIntegrator(kI);
@@ -20,6 +21,11 @@ public class NerdyArticPID {
 		height = h;
 	}
 	
+	public static void setError(double e, long t)	{
+		error = e;
+		time = t;
+	}
+	
 	public static void pid(int level)	{
 		if(!ini)	{
 			init();
@@ -28,7 +34,7 @@ public class NerdyArticPID {
 		prevError = error;
 		error = desired-height;
 		double p = kP * error;
-		integrator.setError(error);
+		integrator.setError(error, time);
 		integrator.perform();
 		double i = integrator.getI();
 		double d = kD * (error - prevError);

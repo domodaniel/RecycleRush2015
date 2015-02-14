@@ -14,13 +14,15 @@ public class NerdyDrivePID {
     private static double error = 0;
     private static double tolerance = 2;
     private static boolean init = false;
+    private static long time;
     
     public static void setTolerance(double t)   {
         tolerance = t;
     }
     
-    public static void setHeading(double head)   {
+    public static void setHeading(double head, long t)   {
         heading = (head+360.0)%360;
+        time = t;
     }
     
     public static void setKP(double p)  {
@@ -45,7 +47,7 @@ public class NerdyDrivePID {
     	}
         error = shortestRotation(desired);
         double p = error * kP;
-        integrator.setError(error);
+        integrator.setError(error, time);
         integrator.perform();
         double i = integrator.getI();
         

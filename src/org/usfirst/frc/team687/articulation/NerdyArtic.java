@@ -7,10 +7,12 @@ public class NerdyArtic {
 	private static int desiredLevel;
 	private static int level;
 	private static boolean[] hallSensor;
+	private static long time;
 	
-	public static void setHeight(double h)	{
+	public static void setHeight(double h, long t)	{
 		height = h;
 		NerdyArticPID.setHeight(height);
+		time = t;
 	}
 	
 	public static double getHeight()	{
@@ -45,6 +47,7 @@ public class NerdyArtic {
 	}
 	
 	public static void run()	{
+		NerdyArticPID.setError(desiredLevel * height, time);
 		NerdyArticPID.pid(desiredLevel);
 		if(isDone())	{
 			power = 0;

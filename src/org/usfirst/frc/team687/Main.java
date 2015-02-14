@@ -54,7 +54,7 @@ public class Main extends IterativeRobot {
     public void teleopPeriodic() {
     	NerdyBot.run();
     	//Start Drive Section
-    	NerdyDrive.setHeader(NerdyBot.imu.getYaw());
+    	NerdyDrive.setHeader(NerdyBot.imu.getYaw(), System.nanoTime());
         boolean beta = rightJoy.getRawButton(4);
         if(beta)	{
         	NerdyDrive.driveBeta(leftJoy.getX(), -leftJoy.getY(), rightJoy.getX(), -rightJoy.getY());

@@ -9,14 +9,16 @@ public class NerdyAutonomousPID {
 	private static NerdyIntegrator integrator;
 	private static boolean ini = false;
 	private static double pid = 0;
+	private static long time;
 	
 	public static void init()	{
 		integrator = new NerdyIntegrator(kI);
 		ini = true;
 	}
 	
-	public static void setDistance(double d)	{
+	public static void setDistance(double d, long t)	{
 		distance = d;
+		time = t;
 	}
 	
 	public static void setDesired(double d)	{
@@ -34,7 +36,7 @@ public class NerdyAutonomousPID {
 		
 		error = desired-distance;
 		double p = kP * error;
-		integrator.setError(error);
+		integrator.setError(error, time);
 		integrator.perform();
 		double i = integrator.getI();
 		pid = (p+i);
@@ -47,7 +49,7 @@ public class NerdyAutonomousPID {
 		
 		error = distance - desired;
 		double p = kP * error;
-		integrator.setError(error);
+		integrator.setError(error, time);
 		integrator.perform();
 		double i = integrator.getI();
 		pid = (p+i);
