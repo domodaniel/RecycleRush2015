@@ -62,6 +62,15 @@ public class NerdyAutonomous {
 		if(!ini)	{
 			init();
 		}
+		for(int i = 0; i < file[0].length; i++)	{
+			while(running){
+				go();
+			}
+			action = file[i];
+		}
+	}
+	
+	private static void go()	{
 		
 	}
 	
