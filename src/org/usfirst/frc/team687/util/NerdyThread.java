@@ -24,7 +24,9 @@ public class NerdyThread extends Thread {
 		switch (mode)	{
 		
 		case 0:
-			NerdyAutonomous.run();
+			while(RobotState.isAutonomous())	{
+				NerdyAutonomous.run();
+			}
 			break;
 			
 		case 1:
